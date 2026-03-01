@@ -1,0 +1,23 @@
+databases:
+  - name: legalbridge_db
+    databaseName: legalbridge_db
+    user: legalbridge_user
+    plan: free
+
+services:
+  - type: web
+    name: legal-bridge-web
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn legal_bridge.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: legalbridge_db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: "4"
+      - key: DEBUG
+        value: "False"

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section" style="margin-top: 80px;">
+    <h1>Lawyer Dashboard</h1>
+
+    <div style="display: flex; gap: 20px; margin-bottom: 40px;">
+        <div class="glass-card" style="flex: 1; text-align: center;">
+            <h2>{{ assigned_cases.count }}</h2>
+            <p>Total Assigned</p>
+        </div>
+        <div class="glass-card" style="flex: 1; text-align: center;">
+            <h2>{{ active_count }}</h2>
+            <p>Active Cases</p>
+        </div>
+        <div class="glass-card" style="flex: 1; text-align: center;">
+            <h2>{{ closed_count }}</h2>
+            <p>Closed Cases</p>
+        </div>
+    </div>
+
+    <h2>Assigned Cases</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+        {% for case in assigned_cases %}
+        <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <h3>{{ case.title }}</h3>
+                <span
+                    style="font-size: 0.8em; padding: 2px 8px; background: rgba(255,255,255,0.2); border-radius: 10px;">{{
+                    case.get_status_display }}</span>
+            </div>
+            <p><strong>Client:</strong> {{ case.client.username }}</p>
+            <p><strong>Type:</strong> {{ case.case_type }}</p>
+            <p><strong>Description:</strong> {{ case.description|truncatewords:15 }}</p>
+            <div style="margin-top: 15px;">
+                <form method="post" action="{% url 'update_case_status' case.id %}">
+                    {% csrf_token %}
+                    <label style="font-size: 0.8rem;">Update Status:</label>
+                    <select name="status" onchange="this.form.submit()"
+                        style="padding: 5px; border-radius: 5px; border: none; background: rgba(255,255,255,0.8); color: #333; margin-left: 5px;">
+                        <option value="pending" {% if case.status == 'pending' %}selected{% endif %}>Pending</option>
+                        <option value="approved" {% if case.status == 'approved' %}selected{% endif %}>Active</option>
+                        <option value="in_progress" {% if case.status == 'in_progress' %}selected{% endif %}>In Progress
+                        </option>
+                        <option value="closed" {% if case.status == 'closed' %}selected{% endif %}>Closed</option>
+                        <option value="rejected" {% if case.status == 'rejected' %}selected{% endif %}>Rejected</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <p>No cases assigned yet.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

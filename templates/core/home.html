@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <h1 class="hero-title">Digital Legal Case Management</h1>
+    <p class="hero-text">
+        Legal Bridge is a comprehensive web-based platform designed to manage legal cases digitally.
+        Say goodbye to manual paperwork and embrace digital transformation in legal practice.
+    </p>
+    <div class="hero-buttons">
+        <a href="{% url 'register' %}" class="btn-primary">Get Started <i class="fas fa-arrow-right"
+                style="margin-left: 5px; font-size: 0.8em;"></i></a>
+        <a href="{% url 'features' %}" class="btn-outline">Learn More</a>
+    </div>
+</section>
+
+<section class="features-section">
+    <h2 class="section-title">System Features</h2>
+    <p class="section-subtitle">Comprehensive tools for efficient case management</p>
+
+    <div class="features-grid">
+        <!-- Feature 1: Role-Based Access (Blue) -->
+        <div class="feature-card">
+            <i class="fas fa-shield-alt feature-icon text-blue"></i>
+            <h3>Role-Based Access</h3>
+            <p>Secure access control for Admin, Lawyers, and Clients with specific permissions</p>
+        </div>
+
+        <!-- Feature 2: Case Tracking (Green) -->
+        <div class="feature-card">
+            <i class="far fa-file-alt feature-icon text-green"></i>
+            <h3>Case Tracking</h3>
+            <p>Real-time case status updates and complete case history management</p>
+        </div>
+
+        <!-- Feature 3: User Management (Purple) -->
+        <div class="feature-card">
+            <i class="fas fa-users-cog feature-icon text-purple"></i>
+            <h3>User Management</h3>
+            <p>Manage lawyers, clients, and their profiles from a centralized dashboard</p>
+        </div>
+
+        <!-- Feature 4: Secure Authentication (Red) -->
+        <div class="feature-card">
+            <i class="fas fa-lock feature-icon text-red"></i>
+            <h3>Secure Authentication</h3>
+            <p>Protected login system with encrypted data storage and secure sessions</p>
+        </div>
+
+        <!-- Feature 5: Centralized Data (Orange) -->
+        <div class="feature-card">
+            <i class="fas fa-database feature-icon text-orange"></i>
+            <h3>Centralized Data</h3>
+            <p>All case information stored in one secure location for easy access</p>
+        </div>
+
+        <!-- Feature 6: Enquiry Management (Teal) -->
+        <div class="feature-card">
+            <i class="far fa-check-circle feature-icon text-teal"></i>
+            <h3>Enquiry Management</h3>
+            <p>Streamlined communication between clients and lawyers through enquiries</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

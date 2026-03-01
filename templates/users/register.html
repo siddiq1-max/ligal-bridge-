@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <!-- Auth Header -->
+    <div class="auth-header">
+        <a href="{% url 'home' %}" class="auth-brand">
+            <i class="fas fa-balance-scale"></i> Legal Bridge
+        </a>
+        <a href="{% url 'home' %}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo-circle">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+
+            <h2 class="auth-title">Welcome to Legal Bridge</h2>
+            <p class="auth-subtitle">Create your account to manage legal cases</p>
+
+            <div class="auth-tabs">
+                <a href="{% url 'login' %}" class="auth-tab">Login</a>
+                <div class="auth-tab active">Register</div>
+            </div>
+
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+
+                <!-- Form fields loop -->
+                {% for field in form %}
+                <div class="form-group">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn-primary auth-btn">Register</button>
+            </form>
+
+            <div class="demo-credentials">
+                <h4>Demo Credentials:</h4>
+                <div style="margin-bottom: 5px;"><strong>Lawyer:</strong> lawyer@legalbridge.com / lawyer123</div>
+                <div><strong>Client:</strong> client@legalbridge.com / client123</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

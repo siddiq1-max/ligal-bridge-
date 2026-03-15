@@ -8,8 +8,8 @@ Legal Bridge is a web platform connecting **Clients** and **Lawyers** with an in
 *   **Custom Dashboards**: Tailored views and functionalities for each user type.
 *   **Glassmorphism Design**: A sleek, modern user interface featuring smooth transitions and beautiful styling.
 *   **Responsive Layouts**: Designed to work intuitively across different screen sizes.
-
-## Local Setup 🚀
+  ## Host Link Here
+   http://siddiq.pythonanywhere.com
 
 To get the project running locally:
 
